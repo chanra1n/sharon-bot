@@ -1,13 +1,23 @@
-const { Client, GatewayIntentBits, Events } = require('discord.js');
+const { Client, GatewayIntentBits, Events, Partials } = require('discord.js');
 require('dotenv').config();
 
 // Create a new Discord client instance
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
-    ]
+        GatewayIntentBits.DirectMessages,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMessageTyping
+    ],
+    partials: [
+        Partials.Channel,
+        Partials.Message,
+        Partials.Reaction,
+        Partials.User
+    ] 
 });
 
 // When the client is ready, run this code once
